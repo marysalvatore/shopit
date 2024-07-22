@@ -1,6 +1,8 @@
 // import axios from '../../req/axios-url';
 import axios from 'axios'
 
+const fgb = process.env.fgb;
+
 // import { NextApiRequest, NextApiResponse } from 'next';
 export default  async function handler (req , res) {
 
@@ -8,6 +10,9 @@ export default  async function handler (req , res) {
       // let qs = `?start=1&limit=5000&convert=USD`
       const response = await axios.get('https://ipapi.co/json/');
       const data = response.data
+      data['fgb'] = fgb
+      console.log('backend: ',data)
+
       res.status(200).json(data)
     } catch (ex) {
       console.log('er: ',ex);
